@@ -1,1 +1,1 @@
-export const counterValue = state => state.counter.value;
+export const selectTasks = state => state.tasks;

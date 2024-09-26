@@ -23,8 +23,8 @@ export const tasksSlice = createSlice({
     },
     fetchingInSuccess(state, action) {
       state.isLoading = false;
-      state.error = null;
       state.items = action.payload;
+      state.error = null;
     },
     fetchingInReject(state, action) {
       state.isLoading = false;
