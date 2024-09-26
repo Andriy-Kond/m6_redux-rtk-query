@@ -1,3 +1,5 @@
-export { default as Home } from "./Home";
-export { default as SharedLayout } from "./SharedLayout";
-export { default as NotFound } from "./NotFound";
+export { default as HomePage } from "./HomePage";
+export { default as NotFound } from "./NotFoundPage";
+export { default as RootSharedLayoutPage } from "./RootSharedLayoutPage";
+export { default as SomeTestsPage } from "./SomeTestsPage";
+export { default as TasksPage } from "./TasksPage";

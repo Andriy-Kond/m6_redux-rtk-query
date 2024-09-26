@@ -1,17 +1,22 @@
 import { Route, Routes } from "react-router-dom";
-
-import { Home, NotFound, SharedLayout } from "pages";
-import Tasks from "features/tasks";
+import {
+  HomePage,
+  RootSharedLayoutPage,
+  SomeTestsPage,
+  TasksPage,
+} from "pages";
+import NotFoundPage from "pages/NotFoundPage";
 
 function App() {
   return (
     <>
       <Routes>
-        <Route path="/" element={<SharedLayout />} end>
-          <Route index element={<Home />} />
-          <Route path="tasks/*" element={<Tasks />} />
+        <Route path="/" element={<RootSharedLayoutPage />} end>
+          <Route index element={<HomePage />} />
+          <Route path="tasks/*" element={<TasksPage />} />
+          <Route path="sometests/*" element={<SomeTestsPage />} />
         </Route>
-        <Route path="*" element={<NotFound />} />
+        <Route path="*" element={<NotFoundPage />} />
       </Routes>
     </>
   );
