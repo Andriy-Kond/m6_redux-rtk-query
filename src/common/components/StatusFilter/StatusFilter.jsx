@@ -3,8 +3,8 @@ import css from "./StatusFilter.module.css";
 import { Button } from "common/components/Button/Button";
 
 import { selectFilters } from "app/selectors";
-import { statusFilters } from "features/tasks/filters/constants";
-import { setStatusFilter } from "features/tasks/filters/filtersSlice";
+import { statusFilters } from "features/filters/constants";
+import { setStatusFilter } from "features/filters/filtersSlice";
 
 export const StatusFilter = () => {
   const filter = useSelector(selectFilters);

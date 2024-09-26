@@ -90,5 +90,11 @@ export const tasksSlice = createSlice({
 //     },
 //   },
 // });
-// export const { fetchingInProgress, fetchingInSuccess, fetchingInReject } =
-//   tasksSlice.actions;
+export const {
+  fetchingInProgress,
+  fetchingInSuccess,
+  fetchingInReject,
+  addTask,
+  deleteTask,
+  toggleCompleted,
+} = tasksSlice.actions;
