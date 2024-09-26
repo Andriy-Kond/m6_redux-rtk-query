@@ -1,16 +1,10 @@
 // https://66f3151c71c84d805877c872.mockapi.io/tasks
 
 import axios from "axios";
-// import {
-//   fetchingInProgress,
-//   fetchingInReject,
-//   fetchingInSuccess,
-// } from "./tasksSlice";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 
 axios.defaults.baseURL = "https://66f3151c71c84d805877c872.mockapi.io";
 
-// * async redux with createAsyncThunk:
 export const fetchTasks = createAsyncThunk(
   "tasks/fetchAll",
   async (_, thunkAPI) => {
@@ -23,14 +17,40 @@ export const fetchTasks = createAsyncThunk(
   },
 );
 
-// * vanilla async redux:
-// export const fetchTasks = () => async dispatch => {
-//   try {
-//     dispatch(fetchingInProgress());
+export const addTask = createAsyncThunk(
+  "tasks/addTask",
+  async (text, thunkAPI) => {
+    try {
+      const res = await axios.post("/tasks", { text });
+      return res.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  },
+);
 
-//     const res = await axios.get("/tasks");
-//     dispatch(fetchingInSuccess(res.data));
-//   } catch (e) {
-//     dispatch(fetchingInReject(e.message));
-//   }
-// };
+export const deleteTask = createAsyncThunk(
+  "tasks/deleteTask",
+  async (id, thunkAPI) => {
+    try {
+      const res = await axios.post(`/tasks/${id}`);
+      return res.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  },
+);
+
+export const toggleCompleted = createAsyncThunk(
+  "tasks/toggleCompleted",
+  async (task, thunkAPI) => {
+    try {
+      const res = await axios.put(`/tasks/${task.id}`, {
+        completed: !task.completed,
+      });
+      return res.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  },
+);

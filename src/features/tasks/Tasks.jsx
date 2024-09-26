@@ -1,29 +1,24 @@
-import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { fetchTasks } from "./operations";
+import { useSelector } from "react-redux";
+
 import { selectTasks } from "app/selectors";
 
-export default function Tasks() {
-  const dispatch = useDispatch();
-  const { items, isLoading, error } = useSelector(selectTasks);
+import { AppBar } from "common/components/AppBar/AppBar";
+import { TaskForm } from "common/components/TaskForm/TaskForm";
+import { TaskList } from "common/components/TaskList/TaskList";
 
-  useEffect(() => {
-    dispatch(fetchTasks());
-  }, [dispatch]);
+export default function Tasks() {
+  const { items, isLoading, error } = useSelector(selectTasks);
 
   return (
     <>
-      {isLoading && <div>Loading...</div>}
+      {isLoading && !error && <div>Loading...</div>}
       {error && <div>{error}</div>}
       {items.length > 0 && !error && (
-        <ul>
-          {items.map(item => (
-            <li id={item.id}>
-              <p>{item.task}</p>
-              <span>{item.createdAt}</span>
-            </li>
-          ))}
-        </ul>
+        <>
+          <AppBar />
+          <TaskForm />
+          <TaskList />
+        </>
       )}
     </>
   );

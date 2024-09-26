@@ -10,6 +10,7 @@ export default function RootSharedLayoutPage() {
         <Link to="/tasks">Tasks</Link>
         <Link to="/sometests">Some Tests</Link>
       </nav>
+
       <Outlet />
     </main>
   );
