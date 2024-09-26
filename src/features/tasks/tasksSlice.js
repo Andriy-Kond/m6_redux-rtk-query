@@ -1,23 +1,37 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  value: 0,
+  items: [],
+  isLoading: false,
+  error: null,
 };
 
-export const counterSlice = createSlice({
-  name: "counter",
+export const tasksSlice = createSlice({
+  name: "tasks",
   initialState,
   reducers: {
-    increment: state => {
-      state.value += 1;
+    // addTask: () => {},
+    // removeTask: () => {},
+    // editTask: () => {},
+
+    // fetchingInProgress: () => {},
+    // fetchingInSuccess: () => {},
+    // fetchingInReject: () => {},
+
+    fetchingInProgress(state) {
+      state.isLoading = true;
     },
-    decrement: state => {
-      state.value -= 1;
+    fetchingInSuccess(state, action) {
+      state.isLoading = false;
+      state.error = null;
+      state.items = action.payload;
     },
-    incrementByAmount: (state, action) => {
-      state.value += action.payload;
+    fetchingInReject(state, action) {
+      state.isLoading = false;
+      state.error = action.payload;
     },
   },
 });
 
-export const { increment, decrement, incrementByAmount } = counterSlice.actions;
+export const { fetchingInProgress, fetchingInSuccess, fetchingInReject } =
+  tasksSlice.actions;

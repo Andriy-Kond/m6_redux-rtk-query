@@ -1,27 +1,18 @@
-import { useDispatch, useSelector } from "react-redux";
+import { Route, Routes } from "react-router-dom";
 
-import { counterValue } from "./selectors";
-import { decrement, increment } from "reduxTools/slice";
+import { Home, NotFound, SharedLayout } from "pages";
+import Tasks from "features/tasks";
 
 function App() {
-  const count = useSelector(counterValue);
-  const dispatch = useDispatch();
-
   return (
     <>
-      <div>
-        <button
-          aria-label="Increment value"
-          onClick={() => dispatch(increment())}>
-          Increment
-        </button>
-        <span>{count}</span>
-        <button
-          aria-label="Decrement value"
-          onClick={() => dispatch(decrement())}>
-          Decrement
-        </button>
-      </div>
+      <Routes>
+        <Route path="/" element={<SharedLayout />} end>
+          <Route index element={<Home />} />
+          <Route path="tasks/*" element={<Tasks />} />
+        </Route>
+        <Route path="*" element={<NotFound />} />
+      </Routes>
     </>
   );
 }
