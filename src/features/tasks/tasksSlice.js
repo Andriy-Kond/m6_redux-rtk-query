@@ -58,6 +58,7 @@ export const tasksSlice = createSlice({
   // },
 
   extraReducers: {
+    // The object notation for `createSlice.extraReducers` is deprecated, and will be removed in RTK 2.0. Please use the 'builder callback' notation instead: https://redux-toolkit.js.org/api/createSlice
     [fetchTasks.pending]: handlePending,
     [fetchTasks.fulfilled](state, action) {
       state.isLoading = false;
