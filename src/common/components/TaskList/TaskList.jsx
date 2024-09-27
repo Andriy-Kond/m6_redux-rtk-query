@@ -3,6 +3,7 @@ import css from "./TaskList.module.css";
 
 import {
   selectVisibleTasks,
+  selectVisibleTasksMemo,
   // selectFilters, selectTasks,
 } from "app/selectors";
 // import { statusFilters } from "features/?filters/constants";
@@ -23,7 +24,7 @@ export const TaskList = () => {
   // const { items } = useSelector(selectTasks);
   // const statusFilter = useSelector(selectFilters);
   // const visibleTasks = getVisibleTasks(items, statusFilter);
-  const visibleTasks = useSelector(selectVisibleTasks);
+  const visibleTasks = useSelector(selectVisibleTasksMemo);
 
   return (
     <ul className={css.list}>
