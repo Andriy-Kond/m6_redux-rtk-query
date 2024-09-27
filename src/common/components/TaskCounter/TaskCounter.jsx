@@ -5,19 +5,23 @@ import {
   // selectTasksCount,
   // selectTasks,
 } from "app/selectors";
+import { useFetchTasksQuery } from "features/tasks/tasksSlice";
 
 export const TaskCounter = () => {
   // const { items } = useSelector(selectTasks);
 
-  // const tasksCount = items.reduce(
-  //   (acc, item) => {
-  //     item.completed ? (acc.completed += 1) : (acc.active += 1);
-  //     return acc;
-  //   },
-  //   { active: 0, completed: 0 },
-  // );
+  const { data } = useFetchTasksQuery;
+  console.log("TaskCounter >> items:::", data);
 
-  const tasksCount = useSelector(selectTasksCountMemo);
+  const tasksCount = data.reduce(
+    (acc, item) => {
+      item.completed ? (acc.completed += 1) : (acc.active += 1);
+      return acc;
+    },
+    { active: 0, completed: 0 },
+  );
+
+  // const tasksCount = useSelector(selectTasksCountMemo);
 
   return (
     <div>

@@ -1,16 +1,19 @@
-import { useEffect } from "react";
-import { useDispatch } from "react-redux";
+// import { useEffect } from "react";
+// import { useDispatch } from "react-redux";
 
-import { fetchTasks } from "features/tasks/operations";
+// import { fetchTasks } from "features/tasks/operations";
 
 import Tasks from "features/tasks";
+// import { useFetchTasksQuery } from "features/tasks/tasksSlice";
 
 export default function TasksPage() {
-  const dispatch = useDispatch();
+  // const { data, error, isLoading } = useFetchTasksQuery();
+  // const dispatch = useDispatch();
 
-  useEffect(() => {
-    dispatch(fetchTasks());
-  }, [dispatch]);
+  // useEffect(() => {
+  //   fetchTasks();
+  //   // dispatch(fetchTasks());
+  // }, [fetchTasks]);
 
   return (
     <>

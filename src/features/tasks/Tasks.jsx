@@ -1,21 +1,19 @@
-import { useSelector } from "react-redux";
-
-import { selectTasks } from "app/selectors";
-
 import { AppBar } from "common/components/AppBar/AppBar";
 import { TaskForm } from "common/components/TaskForm/TaskForm";
 import { TaskList } from "common/components/TaskList/TaskList";
 
+import { useFetchTasksQuery } from "./tasksSlice";
+
 export default function Tasks() {
-  const { items, isLoading, error } = useSelector(selectTasks);
+  const { error, isLoading } = useFetchTasksQuery();
 
   return (
     <>
-      {isLoading && !error && <div>Loading...</div>}
       {error && <div>{error}</div>}
-      {items.length > 0 && !error && (
+      {isLoading && !error && <div>Loading...</div>}
+      {!isLoading && !error && (
         <>
-          <AppBar />
+          {/* <AppBar /> */}
           <TaskForm />
           <TaskList />
         </>
