@@ -2,7 +2,7 @@ import { createSelector } from "@reduxjs/toolkit";
 import { statusFilters } from "features/filters/constants";
 import { tasksApi, useFetchTasksQuery } from "features/tasks/tasksSlice";
 
-export const selectTasks = state => state[tasksApi.reducerPath];
+// export const selectTasks = state => state[tasksApi.reducerPath];
 export const selectFilters = state => state.filters.status;
 
 // НЕ мемоїзований селектор
@@ -22,19 +22,21 @@ export const selectFilters = state => state.filters.status;
 // };
 
 // Мемоїзований селектор
-export const selectTasksCountMemo = createSelector([selectTasks], tasks => {
-  const { items } = tasks;
+export const selectTasksCountMemo = createSelector(
+  [tasksApi.endpoints.fetchTasks.select()],
+  tasksResult => {
+    console.log("Calculating task count");
+    const tasks = tasksResult?.data || []; // без цієї перевірки дає помилку
 
-  // console.log("Calculating task count");
-
-  return items.reduce(
-    (acc, item) => {
-      item.completed ? (acc.completed += 1) : (acc.active += 1);
-      return acc;
-    },
-    { active: 0, completed: 0 },
-  );
-});
+    return tasks.reduce(
+      (acc, task) => {
+        task.completed ? (acc.completed += 1) : (acc.active += 1);
+        return acc;
+      },
+      { active: 0, completed: 0 },
+    );
+  },
+);
 
 // НЕ мемоїзований селектор
 // export const selectVisibleTasks = state => {
@@ -55,9 +57,10 @@ export const selectTasksCountMemo = createSelector([selectTasks], tasks => {
 
 // Мемоїзований селектор
 export const selectVisibleTasksMemo = createSelector(
-  [selectTasks, selectFilters],
-  (tasks, filter) => {
-    console.log("Calculating visible tasks");
+  [tasksApi.endpoints.fetchTasks.select(), selectFilters],
+  (tasksResult, filter) => {
+    // console.log("Calculating visible tasks");
+    const tasks = tasksResult?.data || []; // без цієї перевірки дає помилку
 
     switch (filter) {
       case statusFilters.active:

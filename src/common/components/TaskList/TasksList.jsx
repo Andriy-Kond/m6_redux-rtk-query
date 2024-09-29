@@ -28,24 +28,24 @@ export const TasksList = () => {
   // const statusFilter = useSelector(selectFilters);
   // const visibleTasks = getVisibleTasks(items, statusFilter);
   // const visibleTasks = useSelector(selectVisibleTasksMemo);
-  const { data: tasks } = useFetchTasksQuery();
   // ~ Приклад: Забрати матеріал по id на окремій сторінці, якщо це потрібно:
   // const { materialId } = useParams();
   // const { data: material, isLoading } = useFetchTaskByIdQuery(materialId);
 
+  const { data: tasks } = useFetchTasksQuery();
   const filter = useSelector(selectFilters);
 
-  const visibleTasks = useMemo(() => {
-    console.log("getVisibleTasks");
-    switch (filter) {
-      case statusFilters.active:
-        return tasks.filter(task => !task.completed);
-      case statusFilters.completed:
-        return tasks.filter(task => task.completed);
-      default:
-        return tasks;
-    }
-  }, [tasks, filter]);
+  // const visibleTasks = useMemo(() => {
+  //   console.log("getVisibleTasks");
+  //   switch (filter) {
+  //     case statusFilters.active:
+  //       return tasks.filter(task => !task.completed);
+  //     case statusFilters.completed:
+  //       return tasks.filter(task => task.completed);
+  //     default:
+  //       return tasks;
+  //   }
+  // }, [tasks, filter]);
 
   // const getVisibleTasks = (tasks, filter) => {
   //   console.log("getVisibleTasks");
@@ -60,7 +60,7 @@ export const TasksList = () => {
   // };
 
   // const visibleTasks = getVisibleTasks(tasks, filter);
-  // const visibleTasks = useSelector(selectVisibleTasksMemo());
+  const visibleTasks = useSelector(selectVisibleTasksMemo);
 
   return (
     <ul className={css.list}>
