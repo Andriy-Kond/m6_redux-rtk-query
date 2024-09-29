@@ -1,7 +1,8 @@
 import { createSelector } from "@reduxjs/toolkit";
 import { statusFilters } from "features/filters/constants";
+import { tasksApi, useFetchTasksQuery } from "features/tasks/tasksSlice";
 
-export const selectTasks = state => state.tasks;
+export const selectTasks = state => state[tasksApi.reducerPath];
 export const selectFilters = state => state.filters.status;
 
 // НЕ мемоїзований селектор
@@ -56,17 +57,15 @@ export const selectTasksCountMemo = createSelector([selectTasks], tasks => {
 export const selectVisibleTasksMemo = createSelector(
   [selectTasks, selectFilters],
   (tasks, filter) => {
-    const { items } = tasks;
-
     console.log("Calculating visible tasks");
 
     switch (filter) {
       case statusFilters.active:
-        return items.filter(item => !item.completed);
+        return tasks.filter(item => !item.completed);
       case statusFilters.completed:
-        return items.filter(item => item.completed);
+        return tasks.filter(item => item.completed);
       default:
-        return items;
+        return tasks;
     }
   },
 );

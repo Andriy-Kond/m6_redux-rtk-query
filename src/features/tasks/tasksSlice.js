@@ -20,11 +20,16 @@ export const tasksApi = createApi({
       // providesTags: () => [{ type: "Tasks" }],
     }),
 
+    fetchTaskById: build.query({
+      query: id => `/tasks/${id}`,
+      providesTags: ["Tasks"],
+    }),
+
     addTask: build.mutation({
       query: task => ({
         url: `/tasks`,
         method: "POST",
-        body: { completed: false, text: task },
+        body: task,
       }),
       // transformResponse: response => response.data,
       // transformErrorResponse: response => response.status,
@@ -67,6 +72,7 @@ export const tasksApi = createApi({
 
 export const {
   useFetchTasksQuery,
+  useFetchTaskByIdQuery,
   useAddTaskMutation,
   useDeleteTaskMutation,
   useEditTaskMutation,

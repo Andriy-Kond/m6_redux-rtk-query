@@ -1,19 +1,17 @@
-import { useSelector } from "react-redux";
+// import { useSelector } from "react-redux";
 import css from "./TaskCounter.module.css";
-import {
-  selectTasksCountMemo,
-  // selectTasksCount,
-  // selectTasks,
-} from "app/selectors";
+import // selectTasksCountMemo,
+// selectTasksCount,
+// selectTasks,
+"app/selectors";
 import { useFetchTasksQuery } from "features/tasks/tasksSlice";
 
 export const TaskCounter = () => {
   // const { items } = useSelector(selectTasks);
 
-  const { data } = useFetchTasksQuery;
-  console.log("TaskCounter >> items:::", data);
+  const { data: tasks } = useFetchTasksQuery();
 
-  const tasksCount = data.reduce(
+  const tasksCount = tasks.reduce(
     (acc, item) => {
       item.completed ? (acc.completed += 1) : (acc.active += 1);
       return acc;

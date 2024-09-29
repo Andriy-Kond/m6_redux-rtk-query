@@ -1,6 +1,6 @@
 import { AppBar } from "common/components/AppBar/AppBar";
 import { TaskForm } from "common/components/TaskForm/TaskForm";
-import { TaskList } from "common/components/TaskList/TaskList";
+import { TasksList } from "common/components/TaskList/TasksList";
 
 import { useFetchTasksQuery } from "./tasksSlice";
 
@@ -13,9 +13,9 @@ export default function Tasks() {
       {isLoading && !error && <div>Loading...</div>}
       {!isLoading && !error && (
         <>
-          {/* <AppBar /> */}
+          <AppBar />
           <TaskForm />
-          <TaskList />
+          <TasksList />
         </>
       )}
     </>

@@ -5,7 +5,7 @@ import { tasksApi, tasksSlice } from "features/tasks/tasksSlice";
 export const store = configureStore({
   reducer: {
     // tasks: tasksSlice.reducer,
-    // filters: filtersSlice.reducer,
+    filters: filtersSlice.reducer,
 
     [tasksApi.reducerPath]: tasksApi.reducer,
   },
