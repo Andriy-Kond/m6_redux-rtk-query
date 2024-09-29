@@ -1,1 +1,1 @@
-export { default } from "./Tasks";
+export { default } from "../../common/components/Tasks/Tasks";

@@ -1,5 +1,6 @@
 import { Link, Outlet } from "react-router-dom";
 import css from "./rootSharedLayoutPage.css";
+import { Suspense } from "react";
 
 export default function RootSharedLayoutPage() {
   return (
@@ -11,7 +12,9 @@ export default function RootSharedLayoutPage() {
         <Link to="/sometests">Some Tests</Link>
       </nav>
 
-      <Outlet />
+      <Suspense>
+        <Outlet />
+      </Suspense>
     </main>
   );
 }

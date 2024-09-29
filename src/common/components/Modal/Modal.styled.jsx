@@ -1,10 +1,5 @@
 import styled from "@emotion/styled";
 
-// body.is-hidden {
-// 	/* заборона cкролу позаду модального вікна*/
-// 	overflow: hidden;
-// }
-
 const Backdrop = styled.div`
   position: fixed;
   top: 0;
@@ -13,19 +8,8 @@ const Backdrop = styled.div`
   height: 100vh;
   background-color: rgba(0, 0, 0, 0.5);
 
-  /* opacity: 1; */
-
   transition: opacity 250ms cubic-bezier(0.4, 0, 0.2, 1);
 `;
-
-// .backdrop.is-hidden {
-// 	opacity: 0;
-// 	pointer-events: none;
-// }
-
-// .backdrop.is-hidden .modal {
-// 	transform: translate(-50%, -50%) scale(1.1);
-// }
 
 const ModalWindow = styled.div`
   position: absolute;

@@ -1,19 +1,9 @@
-// import { useDispatch } from "react-redux";
 import { Button } from "common/components/Button/Button";
 import css from "./TaskForm.module.css";
 import { useAddTaskMutation } from "features/tasks/tasksSlice";
-// import { addTask } from "features/tasks/operations";
 
 export const TaskForm = () => {
-  const [addTask, { isLoading, error }] = useAddTaskMutation();
-  //  addTask -  це посилання на функцію query, що знаходиться у addTask: build.mutation
-  //  task => ({
-  //    url: `/tasks`,
-  //    method: "POST",
-  //    body: { completed: false, text: task },
-  //  });
-
-  // const dispatch = useDispatch();
+  const [addTask] = useAddTaskMutation();
 
   const handleSubmit = async e => {
     e.preventDefault();
@@ -21,7 +11,6 @@ export const TaskForm = () => {
 
     try {
       await addTask({ completed: false, text: form.elements.text.value });
-      // переданий об'єкт доходить у параметр task функції query, що знаходиться у addTask: build.mutation -  method: "POST"
     } catch (error) {
       console.log("handleSubmit >> error:::", error);
     } finally {

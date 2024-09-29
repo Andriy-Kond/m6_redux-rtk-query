@@ -1,13 +1,12 @@
 import { useState } from "react";
+import { MdClose, MdEditNote } from "react-icons/md";
+
+import css from "./Task.module.css";
 import {
   useDeleteTaskMutation,
   useToggleCompletedMutation,
   useEditTaskMutation,
-  useFetchTaskByIdQuery,
 } from "features/tasks/tasksSlice";
-import { MdClose, MdEditNote } from "react-icons/md";
-
-import css from "./Task.module.css";
 import EditTaskModal from "common/components/EditTaskModal";
 
 export const Task = ({ task }) => {
@@ -18,7 +17,6 @@ export const Task = ({ task }) => {
   const [isOpenModal, setIsOpenModal] = useState(false);
   const toggleModal = () => {
     setIsOpenModal(prevState => !prevState);
-    // setInputText(task.text); //Якщо розмітка EditTaskModal в цьому компоненті: то щоб при повторному відкритті після закриття кнопкою close modal там був поточний текст а не той, що вводили і не зберегли
   };
 
   const handleDelete = () => {
@@ -43,9 +41,7 @@ export const Task = ({ task }) => {
         className={css.btn}
         onClick={handleDelete}
         disabled={resultDelete.isLoading}
-        aria-label="Delete task"
-        // disabled все одно не спрацьовує, якщо швидко натискати - йде запит на ще одне видалення з відповіддю 404. Тому для дійсно disabled треба робити це при події кліку - в handleDelete
-      >
+        aria-label="Delete task">
         <MdClose size={24} />
       </button>
 
