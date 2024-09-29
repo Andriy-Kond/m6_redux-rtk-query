@@ -35,19 +35,7 @@ export const TasksList = () => {
 
   const filter = useSelector(selectFilters);
 
-  // const visibleTasks = useMemo(() => {
-  //   console.log("getVisibleTasks");
-  //   switch (filter) {
-  //     case statusFilters.active:
-  //       return tasks.filter(task => !task.completed);
-  //     case statusFilters.completed:
-  //       return tasks.filter(task => task.completed);
-  //     default:
-  //       return tasks;
-  //   }
-  // }, [tasks, filter]);
-
-  const getVisibleTasks = (tasks, filter) => {
+  const visibleTasks = useMemo(() => {
     console.log("getVisibleTasks");
     switch (filter) {
       case statusFilters.active:
@@ -57,9 +45,21 @@ export const TasksList = () => {
       default:
         return tasks;
     }
-  };
+  }, [tasks, filter]);
 
-  const visibleTasks = getVisibleTasks(tasks, filter);
+  // const getVisibleTasks = (tasks, filter) => {
+  //   console.log("getVisibleTasks");
+  //   switch (filter) {
+  //     case statusFilters.active:
+  //       return tasks.filter(task => !task.completed);
+  //     case statusFilters.completed:
+  //       return tasks.filter(task => task.completed);
+  //     default:
+  //       return tasks;
+  //   }
+  // };
+
+  // const visibleTasks = getVisibleTasks(tasks, filter);
   // const visibleTasks = useSelector(selectVisibleTasksMemo());
 
   return (
