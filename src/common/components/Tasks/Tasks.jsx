@@ -5,13 +5,13 @@ import { TasksList } from "common/components/TaskList/TasksList";
 import { useFetchTasksQuery } from "../../../features/tasks/tasksSlice";
 
 export default function Tasks() {
-  const { error, isLoading } = useFetchTasksQuery();
+  const { error, isFetching } = useFetchTasksQuery();
 
   return (
     <>
       {error && <div>{error}</div>}
-      {isLoading && !error && <div>Loading...</div>}
-      {!isLoading && !error && (
+      {isFetching && !error && <div>Loading...</div>}
+      {!isFetching && !error && (
         <>
           <AppBar />
           <TaskForm />

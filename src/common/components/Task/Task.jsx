@@ -10,8 +10,8 @@ import {
 import EditTaskModal from "common/components/EditTaskModal";
 
 export const Task = ({ task }) => {
-  const [deleteTask, resultDelete] = useDeleteTaskMutation();
   const [toggleCompleted, resultCompleted] = useToggleCompletedMutation();
+  const [deleteTask, resultDelete] = useDeleteTaskMutation();
   const [editTask, resultEdit] = useEditTaskMutation();
 
   const [isOpenModal, setIsOpenModal] = useState(false);
