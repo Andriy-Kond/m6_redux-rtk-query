@@ -21,9 +21,11 @@ export const selectFilters = state => state.filters.status;
 //   return tasksCount;
 // };
 
+// const { data, error, isLoading } = pokemonApi.endpoints.getPokemonByName.useQuery('bulbasaur') // - робить запит на відповідну частину слайсу
+// [tasksApi.endpoints.fetchTasks.select()], // - обирає відповідну частину стора
 // Мемоїзований селектор
 export const selectTasksCountMemo = createSelector(
-  [tasksApi.endpoints.fetchTasks.select()],
+  [tasksApi.endpoints.fetchTasks.select()], // обирає відповідну частину стора
   tasksResult => {
     console.log("Calculating task count");
     const tasks = tasksResult?.data || []; // без цієї перевірки дає помилку
@@ -57,7 +59,7 @@ export const selectTasksCountMemo = createSelector(
 
 // Мемоїзований селектор
 export const selectVisibleTasksMemo = createSelector(
-  [tasksApi.endpoints.fetchTasks.select(), selectFilters],
+  [tasksApi.endpoints.fetchTasks.select(), selectFilters], // обирає відповідну частину стора
   (tasksResult, filter) => {
     // console.log("Calculating visible tasks");
     const tasks = tasksResult?.data || []; // без цієї перевірки дає помилку

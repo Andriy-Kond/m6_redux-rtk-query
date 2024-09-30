@@ -28,9 +28,16 @@ export const TasksList = () => {
   // const statusFilter = useSelector(selectFilters);
   // const visibleTasks = getVisibleTasks(items, statusFilter);
   // const visibleTasks = useSelector(selectVisibleTasksMemo);
+
   // ~ Приклад: Забрати матеріал по id на окремій сторінці, якщо це потрібно:
   // const { materialId } = useParams();
   // const { data: material, isLoading } = useFetchTaskByIdQuery(materialId);
+  // Щоб хук запускався лише тоді коли є реальний materialId треба передати об'єкт налаштувань. В ньому є skip - коли він true хук не буде робити запити:
+  // const { data: material, isLoading } = useFetchTaskByIdQuery(materialId, {
+  //   skip: materialId === "",
+  // або:
+  //   skip: !materialId
+  // });
 
   const { data: tasks } = useFetchTasksQuery();
   const filter = useSelector(selectFilters);
