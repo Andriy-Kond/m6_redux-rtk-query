@@ -11,7 +11,11 @@ export const tasksApi = createApi({
     fetchTasks: build.query({
       query: () => `/tasks`,
 
-      providesTags: ["Tasks"],
+      // providesTags: ["Tasks"],
+      providesTags: (result, error, arg) =>
+        result
+          ? [...result.map(({ id }) => ({ type: "Tasks", id })), "Tasks"]
+          : ["Tasks"],
     }),
 
     fetchTaskById: build.query({
@@ -26,7 +30,8 @@ export const tasksApi = createApi({
         body: task,
       }),
 
-      invalidatesTags: ["Tasks"],
+      // invalidatesTags: ["Tasks"],
+      invalidatesTags: (result, error, arg) => [{ type: "Tasks", id: arg.id }],
     }),
 
     deleteTask: build.mutation({
@@ -35,7 +40,8 @@ export const tasksApi = createApi({
         method: "DELETE",
       }),
 
-      invalidatesTags: ["Tasks"],
+      // invalidatesTags: ["Tasks"],
+      invalidatesTags: (result, error, arg) => [{ type: "Tasks", id: arg.id }],
     }),
 
     editTask: build.mutation({
@@ -45,7 +51,8 @@ export const tasksApi = createApi({
         body: task,
       }),
 
-      invalidatesTags: ["Tasks"],
+      // invalidatesTags: ["Tasks"],
+      invalidatesTags: (result, error, arg) => [{ type: "Tasks", id: arg.id }],
     }),
 
     toggleCompleted: build.mutation({
@@ -55,7 +62,8 @@ export const tasksApi = createApi({
         body: { ...task, completed: !task.completed },
       }),
 
-      invalidatesTags: ["Tasks"],
+      // invalidatesTags: ["Tasks"],
+      invalidatesTags: (result, error, arg) => [{ type: "Tasks", id: arg.id }],
     }),
   }),
 });
