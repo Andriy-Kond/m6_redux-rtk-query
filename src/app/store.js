@@ -1,4 +1,5 @@
 import { configureStore } from "@reduxjs/toolkit";
+import { setupListeners } from "@reduxjs/toolkit/query";
 import { filtersSlice } from "features/filters/filtersSlice";
 import { tasksApi, tasksSlice } from "features/tasks/tasksSlice";
 
@@ -14,3 +15,5 @@ export const store = configureStore({
   // або:
   // [...getDefaultMiddleware(), tasksApi.middleware,]
 });
+
+setupListeners(store.dispatch);

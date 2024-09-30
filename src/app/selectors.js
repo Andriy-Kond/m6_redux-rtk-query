@@ -1,6 +1,6 @@
 import { createSelector } from "@reduxjs/toolkit";
 import { statusFilters } from "features/filters/constants";
-import { tasksApi, useFetchTasksQuery } from "features/tasks/tasksSlice";
+import { tasksApi } from "features/tasks/tasksSlice";
 
 // export const selectTasks = state => state[tasksApi.reducerPath];
 export const selectFilters = state => state.filters.status;
