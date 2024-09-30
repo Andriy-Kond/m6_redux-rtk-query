@@ -21,7 +21,7 @@ export const selectFilters = state => state.filters.status;
 //   return tasksCount;
 // };
 
-// const { data, error, isLoading } = pokemonApi.endpoints.getPokemonByName.useQuery('bulbasaur') // - робить запит на відповідну частину слайсу
+// const { data, error, isLoading, isFetching } = pokemonApi.endpoints.getPokemonByName.useQuery('bulbasaur') // - робить запит на відповідну частину слайсу
 // [tasksApi.endpoints.fetchTasks.select()], // - обирає відповідну частину стора
 // Мемоїзований селектор
 export const selectTasksCountMemo = createSelector(

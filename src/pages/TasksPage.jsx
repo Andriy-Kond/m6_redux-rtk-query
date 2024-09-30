@@ -7,7 +7,7 @@ import Tasks from "features/tasks";
 // import { useFetchTasksQuery } from "features/tasks/tasksSlice";
 
 export default function TasksPage() {
-  // const { data, error, isLoading } = useFetchTasksQuery();
+  // const { data, error, isLoading, isFetching } = useFetchTasksQuery();
   // const dispatch = useDispatch();
 
   // useEffect(() => {
